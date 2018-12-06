@@ -147,6 +147,8 @@ class AdminController extends Controller
         
         
     }
+    
+    //xoa admin
     public function getXoa($id_Ad){
         $admin = admin::where('id_Ad',$id_Ad)->delete();
         return redirect('admin/taikhoan/danhsachtaikhoan')->with('thongbao','Bạn Đã Xóa Thành Công');

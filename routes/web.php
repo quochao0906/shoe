@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 /*Dây là route danh cho nguoi dung*/
 //index
-Route::get('home','PagesController@home');
+Route::get('home','PagesController@home')->name('home');
 //about
 Route::get('about','PagesController@about');
 //contact
@@ -43,18 +43,23 @@ Route::get('tru{id_sp}','PagesController@TruSP');
 Route::get('cong{id_sp}','PagesController@CongSP');
 //dangnhap
 Route::get('dangnhap','PagesController@getDangnhap');
+Route::post('dangnhap','PagesController@postDangnhap');
+//đăng xuất
+Route::get('logout','PagesController@getDangxuat')->name('logout');
 //dangki
 Route::get('dangki','PagesController@getDangki');
 // Route::get('dangki','PagesController@postDangki');
 
 
 /* Đây la phan route danh cho cac trang cua admin*/
-Route::get('admin/home','PagesController@pageAdmin');
+
 
 Route::get('admin/login','AdminController@getloginAdmin');
 Route::post('admin/login','AdminController@postloginAdmin')->name('login');
 // các route cho các thu muc trong admin
-Route::group(['prefix'=>'admin'],function(){
+Route::prefix("admin")->middleware('adminmiddleware')->group( function(){
+	Route::get('home','PagesController@pageAdmin');
+
 	Route::group(['prefix'=>'thuonghieu'],function(){
 		Route::get('danhsachthuonghieu','ThuongHieuController@getDanhsach')->name('DSThuongHieu');
 
@@ -105,7 +110,7 @@ Route::group(['prefix'=>'admin'],function(){
 
 		Route::get('danhsachsanpham','SanphamController@getDanhsach');
 
-		Route::get('xemsanpham/{id_SP}','SanphamController@getXem')->name('XemSanPham');
+		Route::get('xemsanpham/{id_SP}','SanphamController@getXem');
 
 		Route::get('themsanpham','SanphamController@getThem');
 		Route::post('themsanpham','SanphamController@postThem')->name('ThemSanPham');
@@ -125,6 +130,14 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::post('themkhachhang','KhachhangController@postThem')->name('ThemKhachHang');
 
 		Route::get('xoakhachhang/{id_KH}','KhachhangController@getXoa');
+			
+	});
+
+	Route::group(['prefix'=>'dondathang'],function(){
+
+		Route::get('danhsachdonhang','DondathangController@getDanhsach');
+
+		
 			
 	});
 

@@ -60,6 +60,34 @@
   </table>
   <a href="shop"><button type="submit" class="btn btn-light text-white"><i class="fa fa-shopping-cart"></i>Tiếp Tục Muc Hàng</button></a>
   <a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-truck"></i>Đặt Hàng </button></a>
+  <div class="clearfix"></div>
+  <div class="container">
+    <div class="col-md-12">
+          
+          <div class="box box-solid">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              
+              <dl class="dl-horizontal">
+                <dt>Tên Khách Hàng</dt>
+                <dd>ấdsadsa</dd>
+                <dt>Email</dt>
+                <dd>213</dd>
+                <dt>Điện Thoại</dt>
+                <dd>41234</dd>
+                <dt>Địa Chỉ</dt>
+                <dd>212</dd>
+                <dt>Ngày Giao Hàng</dt>
+                <dd>1224</dd>
+                
+              </dl>
+              
+            </div>
+          </div>
+        </div>
+
+  </div>
 </div>
 
 

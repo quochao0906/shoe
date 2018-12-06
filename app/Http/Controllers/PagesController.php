@@ -149,15 +149,15 @@ class PagesController extends Controller
         $sl = count($giohang);
         return view('pages.dangnhap', compact('sl'));
     }
-    public function postDangNhap(){
+    public function postDangNhap(Request $request){
         $taikhoan = $request->taikhoan;
         $pass = $request->pass;
         $login = khachhang::where([
             [
-                'taikhoan',$TenTK
+                'TenTK',$taikhoan
             ],
             [
-                'pass',$MatKhau
+                'MatKhau',$pass
             ]
 
         ])->first();
@@ -168,12 +168,16 @@ class PagesController extends Controller
         }
         else
         {
+            session()->put('TenKH',$login->HoTenKH);
             
-
-            return view('home');
+            return redirect()->route('home');
         }
     }
     
+    public function getDangxuat(Request $request){
+        $request->session()->flush();
+        return redirect()->route('home');
+    }
     //trang đăng kí
     public function getDangki(){
         $giohang = giohang::all();

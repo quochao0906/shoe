@@ -123,7 +123,7 @@
 																				</div>
 																				<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 																
-																						<a href="#" onclick="return confirm('Sản phẩm đã được thêm vào giỏ hàng');">
+																						<a href="#">
 	                                    													<input type="submit" name="submit" value="Thêm vòa giỏ hàng" class="button" />
 	                               														</a>
 																				</div>

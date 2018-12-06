@@ -2,8 +2,19 @@
 <div class="header" id="home">
 	<div class="container">
 		<ul>
-		    <li> <a href="dangnhap" ><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
-			<li> <a href="dangki" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Kí </a></li>
+			@if(empty(session('TenKH')))
+				<li> <a href="dangnhap"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
+				<li> <a href="dangki" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Kí </a></li>
+			@else
+			
+				<li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-o" aria-hidden="true"></i>{{session('TenKH')}} </a>
+				<span class="caret"></span>
+				  <div class="dropdown-menu row p-5" style="background-color: black;">
+				    <div class="col-12"><a href="#" class="text-dark m-4">Thông Tin Cá Nhân</a></div>
+				    <div class="col-12"><a href="{{route('logout')}}">Thoát</a></div>
+				  </div>
+			</li>
+		    @endif
 			<li><i class="fa fa-phone" aria-hidden="true"></i> Điện Thoại : 0967051501</li>
 			<li><i class="fa fa-envelope-o" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">quochao96@gmail.com</a></li>
 		</ul>

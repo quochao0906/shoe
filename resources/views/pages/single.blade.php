@@ -111,21 +111,11 @@
 					</div>
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="business" value=" ">
-																	<input type="hidden" name="item_name" value="Wing Sneakers">
-																	<input type="hidden" name="amount" value="650.00">
-																	<input type="hidden" name="discount_amount" value="1.00">
-																	<input type="hidden" name="currency_code" value="USD">
-																	<input type="hidden" name="return" value=" ">
-																	<input type="hidden" name="cancel_return" value=" ">
-																	<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button">
-																</fieldset>
-															</form>
-														</div>
+
+									
+										<input action type="submit" id="themgiohang{{$sanpham->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+									
+								</div>
 																			
 					</div>
 					<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
@@ -237,21 +227,11 @@
 											@endif
 										</div>
 										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="business" value=" ">
-																	<input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">
-																	<input type="hidden" name="amount" value="30.99">
-																	<input type="hidden" name="discount_amount" value="1.00">
-																	<input type="hidden" name="currency_code" value="USD">
-																	<input type="hidden" name="return" value=" ">
-																	<input type="hidden" name="cancel_return" value=" ">
-																	<input type="submit" name="submit" value="Thêm Vào Giỏ Hàng " class="button">
-																</fieldset>
-															</form>
-														</div>
+
+									
+										<input action type="submit" id="themgiohang{{$sanpham->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+									
+								</div>
 																			
 									</div>
 								</div>

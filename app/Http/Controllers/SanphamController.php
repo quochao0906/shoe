@@ -17,7 +17,7 @@ class SanphamController extends Controller
     	return view('admin.sanpham.danhsach',['sanpham'=>$sanpham,'chude'=>$chude,'thuonghieu'=>$thuonghieu]);
     }
 
-    //thêm thương hiệu
+    //thêm san pham
     public function getThem(){
     	$sanpham = sanpham::all();
     	$thuonghieu = thuonghieu::all();
@@ -25,20 +25,20 @@ class SanphamController extends Controller
     	return view('admin.sanpham.them',['sanpham'=>$sanpham,'thuonghieu'=>$thuonghieu,'chude'=>$chude]);
     }
     public function postThem(Request $request){
-    	$this->validate($request,[
-    		[
-    			'tensp'=>'required|unique:sanpham, tensp|min:3|max:100',
-    			'giaban'=>'required',
+    	// $this->validate($request,[
+    	// 	[
+    	// 		'tensp'=>'required|unique:sanpham, tensp|min:3|max:100',
+    	// 		'giaban'=>'required',
 
-    		],
-    		[
-    			'tensp.required'=>'Bạn Chưa Nhập Tên Sản Phẩm ',
-    			'tensp.unique'=>'Tên Sản Phẩm Đã Tồn Tại',
-    			'tensp.min'=> 'Tên thương hiệu phải dài từ 3 - 100 kí tự',
-    			'tensp.max'=> 'Tên thương hiệu phải dài từ 3 - 100 kí tự',
-    			'giaban'=>'Bạn Chưa Nhập Giá Bán',
-    		]
-    	]);
+    	// 	],
+    	// 	[
+    	// 		'tensp.required'=>'Bạn Chưa Nhập Tên Sản Phẩm ',
+    	// 		'tensp.unique'=>'Tên Sản Phẩm Đã Tồn Tại',
+    	// 		'tensp.min'=> 'Tên thương hiệu phải dài từ 3 - 100 kí tự',
+    	// 		'tensp.max'=> 'Tên thương hiệu phải dài từ 3 - 100 kí tự',
+    	// 		'giaban'=>'Bạn Chưa Nhập Giá Bán',
+    	// 	]
+    	// ]);
         if($request->hasFile('myFile'))         
          {             //lưu file  
             $img = $request->file('myFile')->getClientOriginalName();
@@ -48,23 +48,23 @@ class SanphamController extends Controller
                                            );
         } 
         else {
-              $img=$request->img;
+              $img="";
         }
 
     	$tensp = $request->tensp;
         $giaban = $request->giaban;
         $sanpham = sanpham::all();
-        foreach($sanpham as $sp)
-        {
-            if($sp->TenSP == $tensp)
-            {
-                return redirect('admin/sanpham/themsanpham')->with('thongbao','Tên Sản Phẩm Đã Tồn Tại');
-            }
-            if($sp->GiaSP == $giaban)
-            {
-                return redirect('admin/sanpham/themsanpham')->with('thongbao','Bạn Chưa Nhập Giá Bán');
-            }
-        }
+        // foreach($sanpham as $sp)
+        // {
+        //     if($sp->TenSP == $tensp)
+        //     {
+        //         return redirect('admin/sanpham/themsanpham')->with('thongbao','Tên Sản Phẩm Đã Tồn Tại');
+        //     }
+        //     if($sp->GiaSP == $giaban)
+        //     {
+        //         return redirect('admin/sanpham/themsanpham')->with('thongbao','Bạn Chưa Nhập Giá Bán');
+        //     }
+        // }
         $idthuonghieu = $request->idthuonghieu;
         $idchude = $request->idchude;
         
@@ -88,8 +88,8 @@ class SanphamController extends Controller
     //xem san pham
     public function getXem($id_SP){
         $sanpham = sanpham::where('id_SP',$id_SP)->first();
-        $chude = chude::all();
-        $thuonghieu = thuonghieu::all();
+        $chude = chude::where('id_CD',$sanpham->id_CD)->first();
+        $thuonghieu = thuonghieu::where('id_TH',$sanpham->id_TH)->first();
         return view('admin.sanpham.xem',['sanpham'=>$sanpham, 'thuonghieu'=>$thuonghieu,'chude'=>$chude]);
     }
 

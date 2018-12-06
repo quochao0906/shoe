@@ -175,7 +175,7 @@
             <li><a href="admin/thuonghieu/danhsachthuonghieu"><i class="fa  fa-long-arrow-right"></i> Thương Hiệu</a></li>
             <li><a href="admin/chude/danhsachchude"><i class="fa  fa-long-arrow-right"></i> Chủ Đề</a></li>
             <li><a href="admin/sanpham/danhsachsanpham"><i class="fa  fa-long-arrow-right"></i> Sản Phẩm</a></li>
-            <li><a href="admin/hoadon/danhsachhoadon"><i class="fa  fa-long-arrow-right"></i> Quản Lý Đơn Hàng</a></li>
+            <li><a href="admin/dondathang/danhsachdonhang"><i class="fa  fa-long-arrow-right"></i> Quản Lý Đơn Hàng</a></li>
             <li><a href="admin/khachhang/danhsachkhachhang"><i class="fa  fa-long-arrow-right"></i> Quản Lý Khách Hàng</a></li>
             <li><a href="admin/taikhoan/danhsachtaikhoan"><i class="fa  fa-long-arrow-right"></i>ADMIN</a></li>
           </ul>

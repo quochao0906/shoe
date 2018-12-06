@@ -15,6 +15,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($request->session()->has('TenAD'))
+            return $next($request);
+        else
+            return redirect()->route('login');
     }
 }
