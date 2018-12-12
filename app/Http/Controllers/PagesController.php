@@ -143,6 +143,15 @@ class PagesController extends Controller
         // return $Gia;
         return $mang;
     }
+    public function getXoa($id_SP){
+        $giohang = giohang::where([
+            ['id_SP',$id_SP],
+            ['id_KH',session('idKH')]
+        ])->delete();
+        return redirect()->route('giohang');
+
+
+    }
     //trang đăng nhập
     public function getDangNhap(){
        $giohang = giohang::all();
@@ -169,6 +178,11 @@ class PagesController extends Controller
         else
         {
             session()->put('TenKH',$login->HoTenKH);
+            session()->put('idKH',$login->id_KH);
+            session()->put('email',$login->EmailKH);
+            session()->put('dienthoai',$login->DienThoaiKH);
+            session()->put('diachi',$login->DiaChiKH);
+            
             
             return redirect()->route('home');
         }
@@ -182,11 +196,45 @@ class PagesController extends Controller
     public function getDangki(){
         $giohang = giohang::all();
         $sl = count($giohang);
-        return view('pages.dangki',compact('sl'));
+        return view('pages.dangki',['sl'=>$sl]);
     }
-    public function postDangki(){
-        
-        return view('pages.dangki');
+    public function postDangKi(Request $request){
+        $this->validate($request,[
+            [
+                'hoten'=>'required|min:3|max:100',
+                'taikhoan'=>'required|unique:admin, username|min:3|max:32',
+                'pass'=>'required|min:3|max:32',
+            ],
+            [
+                'hoten.required'=>'Bạn Chưa Nhập Họ Tên ADMIN ',
+                'taikhoan.unique'=>'Tên Tài Khoản Đã Tồn Tại',
+                'taikhoan.min'=> 'Tên tài khoản phải dài từ 3 - 32 kí tự',
+                'taikhoan.max'=> 'Tên tài khoản phải dài từ 3 - 32 kí tự',
+                'pass.min'=> 'Tên tài khoản phải dài từ 3 - 32 kí tự',
+                'pass.max'=> 'Tên tài khoản phải dài từ 3 - 32 kí tự',
+            ]
+        ]);
+        // foreach()
+        // {
+        //     if()
+        // }
+        $hoten = $request->hoten;
+        $taikhoan = $request->taikhoan;
+        $pass = $request->pass;
+        $ngaysinh = $request->ngaysinh;
+        $email = $request->email;
+        $dienthoai = $request->dienthoai;
+        $diachi = $request->diachi;
+        $khachhang = new khachhang;
+        $khachhang->HoTenKH = $hoten;
+        $khachhang->TenTK = $taikhoan;
+        $khachhang->MatKhau = $pass;
+        $khachhang->NgaySinhKH = $ngaysinh;
+        $khachhang->EmailKH = $email;
+        $khachhang->DiaChiKH = $diachi;
+        $khachhang->DienThoaiKH = $dienthoai;
+        $khachhang->save();
+        return redirect('dangki')->with('thongbao','Đăng Kí Thành Công');
     }
 
     
@@ -194,30 +242,72 @@ class PagesController extends Controller
     //Them mot san pham vao gio hang
     public function themgiohang($id_sp)
     {
-        
-        $sanpham = sanpham::where('id_SP',$id_sp)->first(); 
-        $demhang = giohang::where('id_SP',$id_sp)->get();
-        $sl = count($demhang);
-
-        if($sl != 0)
+        if(empty(session('idKH')))
         {
-            giohang::where('id_SP',$id_sp)->update(['SoLuong'=>$sl+1,'Gia'=>$sanpham->GiaSP*($sl+1)]);
+
+            return 'Vui lòng đăng nhập trước!';
         }
         else
         {
-            $giohang = new giohang;
-            $giohang->id_SP = $id_sp;
-            $giohang->id_KH = '1';
-            $giohang->SoLuong = 1;
-            $giohang->Gia = $sanpham->GiaSP;
-            $giohang->save();
+            $sanpham = sanpham::where('id_SP',$id_sp)->first(); 
+            $demhang = giohang::where('id_SP',$id_sp)->get();
+            $sl = count($demhang);
+
+            if($sl != 0)
+            {
+                giohang::where('id_SP',$id_sp)->update(['SoLuong'=>$sl+1,'Gia'=>$sanpham->GiaSP*($sl+1)]);
+            }
+            else
+            {
+                $giohang = new giohang;
+                $giohang->id_SP = $id_sp;
+                $giohang->id_KH = session('idKH');
+                $giohang->SoLuong = 1;
+                $giohang->Gia = $sanpham->GiaSP;
+                $giohang->save();
+            }
+            return 'Đã thêm vào giỏ hàng!'; 
         }
-        return 'Đã thêm vào giỏ hàng!';
     }
 
-    //trnag admin
+    //trang admin
     public function pageAdmin(){
         return view('admin.home');
+    }
+
+    public function getDathang(){
+        $giohang = giohang::where('id_KH',session('idKH'))->get();
+        $sl = count($giohang);
+        $tongtien = 0;
+        foreach ($giohang as $gh) 
+        {
+            $tongtien += $gh->Gia;
+        }
+        // Tao don dat hang
+        $dondathang = new dondathang();
+        $dondathang->id_KH = session('idKH');
+        $dondathang->TongTien = $tongtien;
+        $dondathang->Payment = 'BaoKim';
+        $dondathang->TinNhanKH = 'Đây là tin nhắn của khách hàng';
+        $dondathang->TrangThai = 0;
+        $dondathang->save();
+
+        $ddh = dondathang::orderBy('id_Bill','desc')->first();
+
+        // Tao cac san pham chi tiet don dat hang
+        foreach ($giohang as $gh) {
+            $ctdh = new chitietdonhang;
+            $ctdh->id_Bill = $ddh->id_Bill;
+            $ctdh->id_SP = $gh->id_SP;
+            $ctdh->SoLuong = $gh->SoLuong;
+            $ctdh->save();
+        }
+
+        // Xoa cac san pham trong gio hang di
+        giohang::where('id_KH',session('idKH'))->delete();
+
+        return view('pages.dathang',['sl'=>$sl]);
+        //return $next_ddh;
     }
 }
 

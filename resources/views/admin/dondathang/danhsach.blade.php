@@ -8,12 +8,6 @@
           <div class="box">
             <div class="box-header">
               <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-              
-              @if(session('thongbao'))
-              <div class="alert alert-danger">
-                {{session('thongbao')}}
-              </div>
-              @endif
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   
@@ -34,22 +28,46 @@
                   <th>Mã Đơn Hàng</th>
                   <th>Tên Khách Hàng</th>
                   <th>Tổng Tiền</th>
+                  <th>Trạng Thái</th>
                   <th>Xem Chi Tiết</th>
                   <th>Xóa</th>
                 </tr>
-                
+                @foreach($dondathang as $dh)
                 <tr>
-                  <td>1</td>	
-                  <td>Dương Quốc Hào</td>
-                  <td>133333</td>
+                  <td>{{$dh->id_Bill}}</td>	
+                  @foreach($khachhang as $kh)
+                  @if($dh->id_KH == $kh->id_KH)
+                  <td>{{$kh->HoTenKH}}</td>
+                  @endif
+                  @endforeach
+                  <td>{{$dh->TongTien}}</td>
+                  @if($dh->TrangThai == 1)
                   <td>
-                    <a href=""><button class="btn btn-light text-white"><i class="fa  fa-tripadvisor"></i>Xem</button></a>
+                    <button class="btn btn-light text-white" style="background-color: #ffaaff">Đã Giao</button>
+                  </td>
+                  @else
+                  <td>
+                    
+                    <button class="btn btn-light text-white" id="btngiaohang{{$dh->id_Bill}}">Chưa Giao</button>
+                    <script type="text/javascript">
+                      $("#btngiaohang{{$dh->id_Bill}}").click(function(){
+                          $.get("giaohang/{{$dh->id_Bill}}", function(data){
+                            alert(data);
+                          });
+                          //alert(1);
+                      });
+                      
+                    </script>
+                  </td>
+                  @endif
+                  <td>
+                    <a href="admin/dondathang/xemdonhang{{$dh->id_Bill}}"><button class="btn btn-light text-white"><i class="fa  fa-tripadvisor"></i>Xem</button></a>
                   </td>
                   <td>
                     <a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-trash"></i>Xóa</button></a>
                   </td>
                 </tr> 
-                              
+                @endforeach            
               </table>
              
             </div>

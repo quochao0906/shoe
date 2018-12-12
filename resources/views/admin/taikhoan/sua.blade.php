@@ -45,12 +45,12 @@
             	
                 <div class="form-group">  
                   <label >Ngày sinh</label>
-                  <input type="date" class="form-control" id="" name="ngaysinh" placeholder="{{$admin->NgaySinh}}">
+                  <input type="date" class="form-control" id="" name="ngaysinh" value="{{$admin->NgaySinh}}" placeholder="">
                 </div>
                 </div>
                 <div class="form-group">
                   <label >Email</label>
-                  <input type="text" class="form-control" id="" name="email" placeholder="{{$admin->EmailKH}}">
+                  <input type="text" class="form-control" id="" name="email" value="{{$admin->EmailAd}}" placeholder="Nhập Email">
                 </div>
                 <div class="form-group">
                   <label >Điện Thoai</label>

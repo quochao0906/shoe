@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a  class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>AD</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -114,7 +114,7 @@
                   <a href="#" class="btn btn-default btn-flat">Thông tin</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Thoát</a>
+                  <a href="{{route('logoutadmin')}}" class="btn btn-default btn-flat">Thoát</a>
                 </div>
               </li>
             </ul>
@@ -134,7 +134,7 @@
         </div>
         <div class="pull-left info">
           <p>{{session('TenAD')}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+          <a ><i class="fa fa-circle text-success"></i>Online</a>
         </div>
       </div>
       <!-- search form -->
@@ -190,7 +190,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa  fa-long-arrow-right"></i> Thông Tin Tài Khoản</a></li>
-            <li><a href="#"><i class="fa  fa-long-arrow-right"></i> Thoát</a></li>
+            <li><a href="{{route('logoutadmin')}}"><i class="fa  fa-long-arrow-right"></i> Thoát</a></li>
             
           </ul>
         </li>

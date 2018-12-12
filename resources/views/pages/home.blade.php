@@ -241,10 +241,18 @@
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 
-									<a href="#">
-										<input type="submit" name="submit" value="Thêm vòa giỏ hàng" class="button" />
-									</a>
+									
+										<input action type="submit" id="themgiohang{{$sp->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+									
 								</div>
+								<script type="text/javascript">
+									$("#themgiohang{{$sp->id_SP}}").click(function(){
+										// alert(1);
+										$.get('themgiohang{{$sp->id_SP}}', function(data){
+											alert(data);
+										});
+									});
+								</script>
 
 							</div>
 						</div>
@@ -283,10 +291,19 @@
 									@endif
 								</div>
 								 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                <a href="" onclick="return confirm('Sản phẩm đã được thêm vào giỏ hàng');">
-                                    <input type="submit" name="submit" value="Thêm vòa giỏ hàng" class="button" />
-                                </a>
-                            	</div>
+
+									
+										<input action type="submit" id="themgiohang{{$sp->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+									
+								</div>
+								<script type="text/javascript">
+									$("#themgiohang{{$sp->id_SP}}").click(function(){
+										// alert(1);
+										$.get('themgiohang{{$sp->id_SP}}', function(data){
+											alert(data);
+										});
+									});
+								</script>
 
 							</div>
 						</div>
@@ -325,10 +342,18 @@
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 
-									<a href="#" onclick="return confirm('Sản phẩm đã được thêm vào giỏ hàng');">
-										<input type="submit" name="submit" value="Thêm vòa giỏ hàng" class="button" />
-									</a>
+									
+										<input action type="submit" id="themgiohang{{$sp->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+									
 								</div>
+								<script type="text/javascript">
+									$("#themgiohang{{$sp->id_SP}}").click(function(){
+										// alert(1);
+										$.get('themgiohang{{$sp->id_SP}}', function(data){
+											alert(data);
+										});
+									});
+								</script>
 
 							</div>
 						</div>

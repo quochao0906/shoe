@@ -70,10 +70,10 @@
                     <a href="admin/sanpham/xemsanpham/{{$sp->id_SP}}"><button class="btn btn-light text-white"><i class="fa  fa-tripadvisor"></i>Xem</button></a>
                   </td>
                   <td>
-                    <a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-wrench"></i>Sửa</button></a>
+                    <a href="admin/sanpham/suasanpham/{{$sp->id_SP}}"><button type="submit" class="btn btn-light text-white"><i class="fa fa-wrench"></i>Sửa</button></a>
                   </td> 
                   <td>
-                    <a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-trash"></i>Xóa</button></a>
+                    <a href="admin/sanpham/xoasanpham/{{$sp->id_SP}}"><button type="submit" class="btn btn-light text-white"><i class="fa fa-trash"></i>Xóa</button></a>
                   </td>
 
                 </tr> 

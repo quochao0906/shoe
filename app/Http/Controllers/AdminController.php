@@ -39,6 +39,10 @@ class AdminController extends Controller
         }
 
 	}
+    public function getLogoutAdmin(Request $request){
+        $request->session()->flush();
+        return redirect()->route('login');
+    }
 
 	//danh sach admin
     public function getDanhsach(){
@@ -93,7 +97,7 @@ class AdminController extends Controller
     	$hoten = $request->hoten;
         
         $pass = $request->pass;
-        $ngaysinh = $request->ngaysinh;
+         $ngaysinh = $request->ngaysinh;
         
         $dienthoai = $request->dienthoai;
         $diachi = $request->diachi;
@@ -102,12 +106,13 @@ class AdminController extends Controller
         $admin->Username = $username;
         $admin->Password = $pass;
         $admin->NgaySinh = $ngaysinh;
-        $admin->EmailAD = $email;
+        $admin->EmailAd = $email;
         $admin->DienThoai = $dienthoai;
         $admin->DiaChi = $diachi;
     	$admin->save();
 
     	return redirect('admin/taikhoan/themadmin')->with('thongbao','Thêm Thành Công');
+    //return $ngaysinh; 
 
     }
 
@@ -139,7 +144,7 @@ class AdminController extends Controller
         $email = $request->email;
         $dienthoai = $request->dienthoai;
         $diachi = $request->diachi;
-        $admin = admin::where('id_Ad',$id_Ad)->update(['HoTen'=>$hoten,'Username'=>$username,'Password'=>$pass,'EmailKH'=>$email,'DienThoai'=>$dienthoai,'DiaChi'=>$diachi]);
+        $admin = admin::where('id_Ad',$id_Ad)->update(['HoTen'=>$hoten,'Username'=>$username,'Password'=>$pass,'EmailAd'=>$email,'DienThoai'=>$dienthoai,'DiaChi'=>$diachi]);
         
         
 

@@ -116,6 +116,14 @@
 										<input action type="submit" id="themgiohang{{$sanpham->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
 									
 								</div>
+								<script type="text/javascript">
+									$("#themgiohang{{$sanpham->id_SP}}").click(function(){
+										// alert(1);
+										$.get('themgiohang{{$sanpham->id_SP}}', function(data){
+											alert(data);
+										});
+									});
+								</script>
 																			
 					</div>
 					<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
@@ -229,9 +237,17 @@
 										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
 
 									
-										<input action type="submit" id="themgiohang{{$sanpham->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
+										<input action type="submit" id="themgiohang{{$sp_lq->id_SP}}" name="submit" value="Thêm vòa giỏ hàng" class="button" />
 									
 								</div>
+								<script type="text/javascript">
+									$("#themgiohang{{$sp_lq->id_SP}}").click(function(){
+										// alert(1);
+										$.get('themgiohang{{$sp_lq->id_SP}}', function(data){
+											alert(data);
+										});
+									});
+								</script>
 																			
 									</div>
 								</div>

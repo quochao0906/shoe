@@ -93,9 +93,42 @@ class SanphamController extends Controller
         return view('admin.sanpham.xem',['sanpham'=>$sanpham, 'thuonghieu'=>$thuonghieu,'chude'=>$chude]);
     }
 
+    //sua san pham
+    public function getSua($id_SP){
+        $sanpham = sanpham::where('id_SP',$id_SP)->first();
+        $thuonghieu = thuonghieu::all();
+        $chude = chude::all();
+        return view('admin.sanpham.sua', ['chude'=>$chude,'thuonghieu'=>$thuonghieu,'sanpham'=>$sanpham]);
+    }
+    public function postSua(Request $request){
+        $id_SP = $request->id_sp;
+        $idthuonghieu = $request->idthuonghieu;
+        $idchude = $request->idchude;
+        $tensp = $request->tensp;
+        $giaban= $request->giaban;
+        $giasale =$request->giasale;
+        $mota = $request->mota;
+        if($request->hasFile('myFile'))         
+         {             //lưu file  
+            $img = $request->file('myFile')->getClientOriginalName();
+                    $request->file('myFile')->move(  
+                                         'images',    //nơi cần lưu                       
+                                         $img     //tên file                      
+                                           );
+        } 
+        else  {
+              $img=$request->img;
+          }  
+           
+        $sanpham = sanpham::where('id_SP',$id_SP)->update(['id_TH'=>$idthuonghieu,'id_CD'=>$idchude,'TenSP'=>$tensp,'GiaSP'=>$giaban,'GiaSale'=>$giasale,'MoTaSP'=>$mota,'ImgSP'=>$img]);
+        
+        return redirect('admin/sanpham/suasanpham/'.$id_SP)->with('thongbao','Sửa Thành Công');       
+        
+    }
+
     //xoa san pham
     public function getXoa($id_SP){
-        $sanpham = sanpham::where('id_SP',$id_SP)->first();   
+        $sanpham = sanpham::where('id_SP',$id_SP)->delete();   
         return redirect('admin/sanpham/danhsachsanpham')->with('thongbao','Xóa Thành Công');
     }
 }

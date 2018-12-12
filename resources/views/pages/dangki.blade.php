@@ -10,8 +10,21 @@
     <div class="box-header with-border">
        <h3 class="box-title">Đăng Kí Thành Viên</h3>
     </div>
-    <br>   
-    <form action="" method="post" > 
+    <br>  
+    @if(count($errors)>0)
+              <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                  {{$err}}
+                @endforeach
+              </div>
+     @endif
+    @if(session('thongbao'))
+              <div class="alert alert-danger">
+                {{session('thongbao')}}
+              </div>
+    @endif 
+    <form action="dangki" method="post" nctype="multipart/form-data"> 
+      <input type="hidden" name="_token" value="{{csrf_token()}}">
       <div class="form-group">
         <label >Họ Tên</label>
         <input type="text" name="hoten" placeholder="Nhập Họ Tên Của Bạn">
@@ -24,10 +37,10 @@
         <label >Mật Khẩu</label>
         <input type="password" name="pass" placeholder=" Nhập Mật khẩu" >
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label >Nhập Lại Mật Khẩu</label> 
         <input type="password" name="repass" placeholder="Nhập lại mật khẩu" > 
-      </div>
+      </div> -->
       <div class="form-group">
         <label >Ngày Sinh</label>
         <input type="date" name="ngaysinh">

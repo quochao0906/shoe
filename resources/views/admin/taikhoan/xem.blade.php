@@ -29,7 +29,7 @@
                 <dt>Ngày Sinh</dt>
                 <dd>{{$admin->NgaySinh}}</dd>
                 <dt>Email</dt>
-                <dd>{{$admin->EmailAD}}</dd>
+                <dd>{{$admin->EmailAd}}</dd>
                 <dt>Điện Thoại</dt>
                 <dd>{{$admin->DienThoai}}</dd>
                 <dt>Địa Chỉ</dt>

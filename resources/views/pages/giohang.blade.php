@@ -28,7 +28,7 @@
         <td>{{$sp->GiaSP}}$</td>
         <td><input type="text" value="{{$gh->Gia}}" id="gia{{$sp->id_SP}}" disabled></td>
         <td>
-        	<a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-trash"></i>Xóa</button></a>
+        	<a href="xoahang{{$sp->id_SP}}"><button type="submit" class="btn btn-light text-white"><i class="fa fa-trash"></i>Xóa</button></a>
         </td>
       </tr>
       <script type="text/javascript">
@@ -59,7 +59,7 @@
     
   </table>
   <a href="shop"><button type="submit" class="btn btn-light text-white"><i class="fa fa-shopping-cart"></i>Tiếp Tục Muc Hàng</button></a>
-  <a href=""><button type="submit" class="btn btn-light text-white"><i class="fa fa-truck"></i>Đặt Hàng </button></a>
+  <a href="dathang"><button type="submit" class="btn btn-light text-white"><i class="fa fa-truck"></i>Đặt Hàng </button></a>
   <div class="clearfix"></div>
   <div class="container">
     <div class="col-md-12">
@@ -71,15 +71,15 @@
               
               <dl class="dl-horizontal">
                 <dt>Tên Khách Hàng</dt>
-                <dd>ấdsadsa</dd>
+                <dd>{{session('TenKH')}}</dd>
                 <dt>Email</dt>
-                <dd>213</dd>
+                <dd>{{session('email')}}</dd>
                 <dt>Điện Thoại</dt>
-                <dd>41234</dd>
+                <dd>{{session('dienthoai')}}</dd>
                 <dt>Địa Chỉ</dt>
-                <dd>212</dd>
-                <dt>Ngày Giao Hàng</dt>
-                <dd>1224</dd>
+                <dd>{{session('diachi')}}</dd>
+                <!-- <dt>Ngày Giao Hàng</dt>
+                <dd>1224</dd> -->
                 
               </dl>
               

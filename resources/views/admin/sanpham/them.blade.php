@@ -12,6 +12,18 @@
             <div class="box-header with-border">
               <h3 class="box-title">Thêm Sản Phẩm</h3>
             </div>
+            @if(count($errors)>0)
+              <div class="alert alert-danger">
+                @foreach($erros->all() as $err)
+                  {{$err}}
+                @endforeach
+              </div>
+            @endif
+            @if(session('thongbao'))
+              <div class="alert alert-danger">
+                {{session('thongbao')}}
+              </div>
+            @endif
             <!-- /.box-header -->
             <!-- form start -->
             <form action="{{route('ThemSanPham')}}" method="post" enctype="multipart/form-data">

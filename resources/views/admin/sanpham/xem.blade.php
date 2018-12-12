@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 @section('content')
-<a href=""><i class="fa  fa-arrow-circle-left"></i>  <br> Trở Về</a>
+<a href="admin/sanpham/danhsachsanpham"><i class="fa  fa-arrow-circle-left"></i>  <strong> Trở Về</strong></a>
 <section class="content-header">
       <!-- ./col -->
 
